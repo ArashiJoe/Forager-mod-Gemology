@@ -8,7 +8,7 @@ ItemEdit(Item.Steel, ItemData.Blueprint, [
 	Item.IronIngot, 2,
 	Item.Coal, 2
 ]);
-ItemEdit(Item.Steel, ItemData.Name, "carbon steel");
+ItemEdit(Item.Steel, ItemData.Description, "an iron/carbon alloy highly resilient to breakage or blemish.");
 ItemEdit(Item.Steel, ItemData.Sprite, sprite_add("steel/steel.png", 1, true, false, 9, 8));
 
 
@@ -26,8 +26,8 @@ ItemEdit(Item.Hammer, ItemData.Blueprint, [
 
 global.DamascusSteel = ItemCreate(
 	undefined,
-	"damascus steel",
-	"a beautiful waterfall pattern wraps all around the metal's surface",
+	"damascus\nsteel",
+	"a beautiful waterfall pattern wraps all around the alloy's surface",
 	sprite_add("steel/damascus.png", 1, true, false, 9, 8),
 	ItemType.Material,
 	ItemSubType.None,
