@@ -13,15 +13,6 @@ ItemEdit(Item.Steel, ItemData.Sprite, sprite_add("steel/steel.png", 1, true, fal
 
 
 
-// CHANGES TO HAMMER
-
-ItemEdit(Item.Hammer, ItemData.Blueprint, [
-	Item.Steel, 5,
-	Item.Wood, 5
-]);
-
-
-
 // CREATE DAMASCUS STEEL
 
 global.DamascusSteel = ItemCreate(
@@ -46,6 +37,15 @@ global.DamascusSteel = ItemCreate(
 
 
 
+// CHANGES TO HAMMER
+
+ItemEdit(Item.Hammer, ItemData.Blueprint, [
+	Item.Steel, 5,
+	Item.Wood, 5
+]);
+
+
+
 // CREATE SAPPHIRE
 
 global.Sapphire = ItemCreate(
@@ -58,7 +58,7 @@ global.Sapphire = ItemCreate(
 	50,
 	0,
 	0,
-	[Item.Steel, 1, Item.Stone, 16, Item.Coal, 16, Item.Lavender, 4],
+	[global.DamascusSteel, 1, Item.Stone, 16, Item.Coal, 16, Item.Lavender, 4],
 	ScriptWrap(EmptyScript),
 	300,
 	false
@@ -86,21 +86,12 @@ ItemEdit(Item.RoyalSteel, ItemData.Blueprint, [
 	Item.Ruby, 1,
 	Item.Coal, 4
 ]);
-/*StructureEdit(Structure.Quarry, StructureData.Blueprint, [
-	Item.Coal, 10,
-	global.Sapphire, 5,
-	Item.Amethyst, 5,
-	Item.Topaz, 5,
-	Item.Emerald, 5,
-	Item.Ruby, 5,
-	Item.Stone, 20
-]);*/
 
 
 
 // CHANGES TO TRANSMUTATION
 
-ItemEdit(Item.Transmutation, ItemData.Blueprint, [Item.Steel, 1, Item.Stone, 16, Item.Coal, 16]);
+ItemEdit(Item.Transmutation, ItemData.Blueprint, [global.DamascusSteel, 1, Item.Stone, 16, Item.Coal, 16]);
 ItemEdit(Item.Transmutation, ItemData.CraftingTime, 60);
 ItemEdit(Item.Transmutation, ItemData.Description, "transform steel into a random gem.");
 
@@ -108,16 +99,16 @@ ItemEdit(Item.Transmutation, ItemData.Description, "transform steel into a rando
 
 // CHANGES TO GEMS
 
-ItemEdit(Item.Amethyst, ItemData.Blueprint, [Item.Steel, 1, Item.Stone, 16, Item.Coal, 16, Item.NightShade, 4]);
+ItemEdit(Item.Amethyst, ItemData.Blueprint, [global.DamascusSteel, 1, Item.Stone, 16, Item.Coal, 16, Item.NightShade, 4]);
 ItemEdit(Item.Amethyst, ItemData.CraftingTime, 300);
 ItemEdit(Item.Amethyst, ItemData.Unlocked, false);
-ItemEdit(Item.Topaz, ItemData.Blueprint, [Item.Steel, 1, Item.Stone, 16, Item.Coal, 16, Item.HotPepper, 4]);
+ItemEdit(Item.Topaz, ItemData.Blueprint, [global.DamascusSteel, 1, Item.Stone, 16, Item.Coal, 16, Item.HotPepper, 4]);
 ItemEdit(Item.Topaz, ItemData.CraftingTime, 300);
 ItemEdit(Item.Topaz, ItemData.Unlocked, false);
-ItemEdit(Item.Emerald, ItemData.Blueprint, [Item.Steel, 1, Item.Stone, 16, Item.Coal, 16, Item.Beet, 4]);
+ItemEdit(Item.Emerald, ItemData.Blueprint, [global.DamascusSteel, 1, Item.Stone, 16, Item.Coal, 16, Item.Beet, 4]);
 ItemEdit(Item.Emerald, ItemData.CraftingTime, 300);
 ItemEdit(Item.Emerald, ItemData.Unlocked, false);
-ItemEdit(Item.Ruby, ItemData.Blueprint, [Item.Steel, 1, Item.Stone, 16, Item.Coal, 16, Item.Cinderbloom, 4]);
+ItemEdit(Item.Ruby, ItemData.Blueprint, [global.DamascusSteel, 1, Item.Stone, 16, Item.Coal, 16, Item.Cinderbloom, 4]);
 ItemEdit(Item.Ruby, ItemData.CraftingTime, 300);
 ItemEdit(Item.Ruby, ItemData.Unlocked, false);
 
@@ -184,6 +175,11 @@ global.Onyx = ItemCreate(
 
 // CHANGES TO COSMIC ITEMS
 
+ItemEdit(Item.CosmicSteel, ItemData.Blueprint, [
+	Item.VoidSteel, 2,
+	Item.LegendaryGem, 5,
+	Item.StarFragment, 5
+]);
 ItemEdit(Item.CosmicSteel, ItemData.Description, "a legendary steel imbued with the magic of a fallen star.");
 ItemEdit(Item.CosmicSteel, ItemData.Name, "sky steel");
 ItemEdit(Item.CosmicSteel, ItemData.Sprite, sprite_add("steel/cosmic.png", 16, true, false, 8, 8));
@@ -215,7 +211,7 @@ global.SiderealSteel = ItemCreate(
 	0,
 	[
 		Item.CosmicSteel, 2,
-		global.Onyx, 2,
+		global.Onyx, 5,
 		Item.KrakenEye, 5
 	],
 	ScriptWrap(EmptyScript),
@@ -225,18 +221,25 @@ global.SiderealSteel = ItemCreate(
 
 
 
-// CREATE SIDEREAL TOOLS (COMING SOON!!)
-
-/*global.SiderealSword = ItemCreate();
-global.SiderealPickaxe = ItemCreate();*/
-
+// CREATE SIDEREAL TOOLS
+/*
+global.SiderealPickaxe = ItemCreate();
+global.SiderealSword = ItemCreate();
+global.SiderealBow = ItemCreate();
+global.SiderealWallet = ItemCreate();
+global.SiderealGloves = ItemCreate();
+global.SiderealBoots = ItemCreate();
+global.SiderealEncyclopedia = ItemCreate();
+global.SiderealAmulet = ItemCreate();
+*/
 
 
 // CHANGES TO OBLITERATOR
 
 ItemEdit(Item.Obliterator, ItemData.Blueprint, [
-	Item.NuclearMachinery, 20,
-	global.SiderealSteel, 30
+	Item.SpiritOrb, 20,
+	global.SiderealSteel, 20,
+	Item.NuclearMachinery, 20
 ]);
 
 
@@ -265,6 +268,7 @@ LocalizationAddKey("english", "skillDesc63", "U unlocks legendary steels**U unlo
 // VARIABLES FOR SCRIPTS
 
 global.SapphireDropChance = 25;
+// global.StepCount = 0;
 global.AllRockTypes[0] = undefined; // OnResourceDestroy placeholder
 global.AllRockTypes[1] = undefined; // OnResourceDestroy placeholder
 global.AllRockTypes[2] = objRock;
@@ -279,13 +283,20 @@ global.AllRockTypes[8] = objUraniumRock;
 
 // CUSTOM SCRIPTS
 
-#define EmptyScript
-// "Don't you say a f*ckin' word."
+#define CheckQuarries(QuarryDestroyed)
+/* var temp = max(0, instance_number(objQuarry));
+if(!(temp >= 1)) { temp = 0; }
+if(QuarryDestroyed && temp > 0) { temp--; }
+StructureEdit(Structure.Quarry, StructureData.Blueprint, [
+	global.Sapphire, temp+4,
+	Item.Amethyst, temp+4,
+	Item.Topaz, temp+4,
+	Item.Emerald, temp+4,
+	Item.Ruby, temp+4,
+	Item.Stone, 10*(temp+4)
+]); */
 
-#define PlaySound(str)
-audio_play_sound(asset_get_index(str), 0, false);
-
-#define SkillExtras
+#define CheckSkillExtras
 if(HasSkill(Skill.Prospecting)) {
 	global.SapphireDropChance = 75;
 } else {
@@ -296,7 +307,7 @@ if(HasSkill(Skill.Calciverous)) {
 	ItemEdit(global.Sapphire, ItemData.Type, ItemType.Consumable);
 }
 
-#define SkillUnlocks
+#define CheckSkillUnlocks
 ItemEdit(global.DamascusSteel, ItemData.Unlocked, HasSkill(Skill.Craftsmanship));
 ItemEdit(global.Sapphire, ItemData.Unlocked, HasSkill(Skill.Transmutation));
 ItemEdit(Item.Amethyst, ItemData.Unlocked, HasSkill(Skill.Transmutation));
@@ -306,6 +317,12 @@ ItemEdit(Item.Ruby, ItemData.Unlocked, HasSkill(Skill.Transmutation));
 ItemEdit(Item.LegendaryGem, ItemData.Unlocked, HasSkill(Skill.Astrology));
 ItemEdit(global.SiderealSteel, ItemData.Unlocked, HasSkill(Skill.Astrology));
 ItemEdit(global.Onyx, ItemData.Unlocked, HasSkill(Skill.Astrology));
+
+#define EmptyScript
+// "Don't you say a f*ckin' word."
+
+#define PlaySound(str)
+audio_play_sound(asset_get_index(str), 0, false);
 
 
 
@@ -328,10 +345,11 @@ if(item == global.Sapphire) { PlaySound("sndRarePickup"); }
 if(item == global.Onyx) { PlaySound("sndStarFragmentPickup"); }
 
 #define OnLoadEnd
-SkillUnlocks();
+CheckQuarries(false);
+CheckSkillUnlocks();
 
 #define OnMobDeath(inst)
-/*if(gearGet(Gear.Sword, GearData.Current) == global.SiderealSword) {
+/* if(gearGet(Gear.Sword, GearData.Current) == global.SiderealSword) {
 	var rand = random(100);
 	if(rand < 15) {
 		DropItem(x, y, Item.LegendaryGem, 1);
@@ -342,7 +360,7 @@ SkillUnlocks();
 		DropItem(x, y, global.Onyx, 1);
 		PlaySound("sndStarFragmentDrop");
 	}
-}*/
+} */
 var dmg10 = 0, health = 0;
 switch(inst.object_index) {
 	case objThunderSpiritBoss:
@@ -407,7 +425,7 @@ for(lcv = 2; lcv < 9; lcv++) {
 			}
 			PlaySound("sndGemDrop");
 		}
-		/*if(gearGet(Gear.Pickaxe, GearData.Current) != global.SiderealPickaxe) { break; }
+		/* if(gearGet(Gear.Pickaxe, GearData.Current) != global.SiderealPickaxe) { break; }
 		rand = random(1000);
 		if(rand < 10) {
 			DropItem(x, y, Item.LegendaryGem, 1);
@@ -417,14 +435,27 @@ for(lcv = 2; lcv < 9; lcv++) {
 		if(rand < 1.0) {
 			DropItem(x, y, global.Onyx, 1);
 			PlaySound("sndStarFragmentDrop");
-		}*/
+		} */
 		break;
 	}
 }
 
 #define OnRoomLoad
-SkillExtras();
-SkillUnlocks();
+CheckSkillExtras();
+CheckSkillUnlocks();
+
+#define OnStep
+/* global.StepCount++;
+if(global.StepCount >= 300) {
+	CheckQuarries(false);
+	global.StepCount = 0;
+} */
+
+#define OnStructureBuild(inst, structure)
+CheckQuarries(false);
+
+#define OnStructureDestroy(inst, structure)
+CheckQuarries(inst.object_index == objQuarry);
 
 
 
